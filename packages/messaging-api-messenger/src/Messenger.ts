@@ -283,13 +283,13 @@ function createMediaTemplate(
 }
 
 function createReceiptTemplate(
-  attrs: Types.ReceiptAttributes,
+  receipt: Types.ReceiptAttributes,
   options?: { quickReplies?: Types.QuickReply[] }
 ): Types.Message {
   return createTemplate(
     {
       templateType: 'receipt',
-      ...attrs,
+      ...receipt,
     },
     options
   );

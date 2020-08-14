@@ -183,12 +183,12 @@ function sendGenericTemplate(
 
 function sendReceiptTemplate(
   psidOrRecipient: Types.PsidOrRecipient,
-  attrs: Types.ReceiptAttributes,
+  receipt: Types.ReceiptAttributes,
   options?: Types.SendOption & Types.BatchRequestOptions
 ): Types.BatchItem {
   return sendMessage(
     psidOrRecipient,
-    Messenger.createReceiptTemplate(attrs, options),
+    Messenger.createReceiptTemplate(receipt, options),
     options
   );
 }

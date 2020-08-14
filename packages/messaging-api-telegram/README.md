@@ -19,7 +19,7 @@
   - [Game API](#game-api)
   - [Others](#others)
 - [Debug Tips](#debug-tips)
-- [Test](#test)
+- [Testing](#testing)
 
 ## Installation
 
@@ -48,7 +48,7 @@ const client = new TelegramClient('12345678:AaBbCcDdwhatever');
 
 ### Error Handling
 
-`messaging-api-telegram` uses [axios](https://github.com/axios/axios) as HTTP client. We use [axios-error](https://github.com/Yoctol/messaging-apis/tree/master/packages/axios-error) package to wrap API error instances for better formatting error messages. Directly `console.log` on the error instance will return formatted message. If you'd like to get the axios `request`, `response`, or `config`, you can still get them via those keys on the error instance.
+`messaging-api-telegram` uses [axios](https://github.com/axios/axios) as HTTP client. We use [axios-error](https://github.com/Yoctol/messaging-apis/tree/master/packages/axios-error) package to wrap API error instances for better formatting error messages. Directly calling `console.log` with the error instance will return formatted message. If you'd like to get the axios `request`, `response`, or `config`, you can still get them via those keys on the error instance.
 
 ```js
 client.getWebhookInfo().catch((error) => {
@@ -1260,15 +1260,15 @@ client.forwardMessage(CHAT_ID, USER_ID, MESSAGE_ID, {
 
 ## Debug Tips
 
-### Log requests details
+### Log Requests Details
 
 To enable default request debugger, use following `DEBUG` env variable:
 
 ```sh
-DEBUG=messaging-api-telegram
+DEBUG=messaging-api:request
 ```
 
-If you want to use custom request logging function, just define your own `onRequest`:
+If you want to use a custom request logging function, just provide your own `onRequest`:
 
 ```js
 const client = new TelegramClient({
@@ -1279,11 +1279,11 @@ const client = new TelegramClient({
 });
 ```
 
-## Test
+## Testing
 
-### Point requests to your dummy server
+### Point Requests to Your Dummy Server
 
-To avoid sending requests to real Telegram server, specify `origin` option when constructing your client:
+To avoid sending requests to real Telegram server, specify the `origin` option when constructing your client:
 
 ```js
 const { TelegramClient } = require('messaging-api-telegram');
@@ -1294,7 +1294,7 @@ const client = new TelegramClient({
 });
 ```
 
-> Warning: Don't do this on production server.
+> Warning: Don't do this on your production server.
 
 ### Manual Mock with [Jest](https://facebook.github.io/jest/)
 

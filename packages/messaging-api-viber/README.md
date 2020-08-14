@@ -17,7 +17,7 @@
   - [Get User Details](#get-user-details)
   - [Get Online](#get-online)
 - [Debug Tips](#debug-tips)
-- [Test](#test)
+- [Testing](#testing)
 
 ## Installation
 
@@ -46,7 +46,7 @@ const client = new ViberClient(authToken);
 
 ### Error Handling
 
-`messaging-api-viber` uses [axios](https://github.com/axios/axios) as HTTP client. We use [axios-error](https://github.com/Yoctol/messaging-apis/tree/master/packages/axios-error) package to wrap API error instances for better formatting error messages. Directly `console.log` on the error instance will return formatted message. If you'd like to get the axios `request`, `response`, or `config`, you can still get them via those keys on the error instance.
+`messaging-api-viber` uses [axios](https://github.com/axios/axios) as HTTP client. We use [axios-error](https://github.com/Yoctol/messaging-apis/tree/master/packages/axios-error) package to wrap API error instances for better formatting error messages. Directly calling `console.log` with the error instance will return formatted message. If you'd like to get the axios `request`, `response`, or `config`, you can still get them via those keys on the error instance.
 
 ```js
 client.setWebhook(url).catch((error) => {
@@ -644,15 +644,15 @@ client
 
 ## Debug Tips
 
-### Log requests details
+### Log Requests Details
 
 To enable default request debugger, use following `DEBUG` env variable:
 
 ```sh
-DEBUG=messaging-api-viber
+DEBUG=messaging-api:request
 ```
 
-If you want to use custom request logging function, just define your own `onRequest`:
+If you want to use a custom request logging function, just provide your own `onRequest`:
 
 ```js
 const client = new ViberClient({
@@ -663,11 +663,11 @@ const client = new ViberClient({
 });
 ```
 
-## Test
+## Testing
 
-### Point requests to your dummy server
+### Point Requests to Your Dummy Server
 
-To avoid sending requests to real Viber server, specify `origin` option when constructing your client:
+To avoid sending requests to real Viber server, specify the `origin` option when constructing your client:
 
 ```js
 const { ViberClient } = require('messaging-api-viber');
@@ -678,7 +678,7 @@ const client = new ViberClient({
 });
 ```
 
-> Warning: Don't do this on production server.
+> Warning: Don't do this on your production server.
 
 ### Manual Mock with [Jest](https://facebook.github.io/jest/)
 
